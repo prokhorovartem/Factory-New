@@ -48,17 +48,33 @@ bot.onText(/\/players/, function (msg) {
 });
 bot.onText(/\/player (.+)/, function (msg, match) {
     var resp = match[1];
-    models.player.findAll({
-        include: [{model: models.team, required: true}],
-        where: {
-            nickname: resp
-        }
-    }).then(function (player) {
-        var resp = "Никнейм: " + player[0].nickname + "\n" + "Имя: " +
-            player[0].name + "\n" + "Фамилия: " + player[0].surname + "\n" +
-            "Дата рождения: " + player[0].dateOfBirth  + "\n" + "Страна: " + player[0].country+ "\n" +
-            "Старт карьеры: " + player[0].startOfCareer  + "\n" + "Команда: " +
-            player[0].team.name;
+    models.team.findAll({
+        attributes: ['name'],
+        include: [{
+            model: models.player,
+            required: true,
+            where: {
+                nickname: resp
+            },
+            include: [{
+                model: models.frag,
+                required: true,
+                attributes: [[models.sequelize.fn('count', models.sequelize.col('weapon_id')), 'counter']],
+                include: [{
+                    model: models.weapon,
+                    required: true,
+                    attributes: ['name']
+                }]
+            }]
+        }],
+        group: ['nickname', 'weapon_id', 'players.id', 'team.name', 'team.id', 'players->frags.id', 'players->frags->weapon.id']
+    }).then(function (team) {
+        var resp = "Никнейм: " + team[0].players[0].nickname + "\n" + "Имя: " +
+            team[0].players[0].name + "\n" + "Фамилия: " + team[0].players[0].surname + "\n" +
+            "Дата рождения: " + team[0].players[0].dateOfBirth  + "\n" + "Страна: " + team[0].players[0].country+ "\n" +
+            "Старт карьеры: " + team[0].players[0].startOfCareer  + "\n" + "Команда: " +
+            team[0].name + "\n" + "Любимое оружие: " + team[0].players[0].frags[0].weapon.name + " (" + team[0].players[0].frags[0].dataValues.counter +
+            " фрагов)";
             bot.sendMessage(msg.chat.id, resp);
     })
 });
@@ -75,7 +91,6 @@ bot.onText(/\/killers/, function (msg) {
         order: [[models.sequelize.fn('count', models.sequelize.col('frag.killer_id')), 'DESC']],
         limit: 10
     }).then(function (killers) {
-        console.log(killers[0].dataValues.counter);
         for (var i = 0; i < killers.length; i++) {
             resp += killers[i].player.nickname + " - " + killers[i].dataValues.counter + " фрага\n";
         }
