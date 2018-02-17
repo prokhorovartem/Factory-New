@@ -65,8 +65,6 @@ db.frag.belongsTo(db.round, {foreignKey: 'round_id'});
 db.round.hasMany(db.frag, {foreignKey: 'round_id'});
 db.frag.belongsTo(db.player, {foreignKey: 'killer_id'});
 db.player.hasMany(db.frag, {foreignKey: 'killer_id'});
-db.frag.belongsTo(db.player, {foreignKey: 'dead_id'});
-db.player.hasMany(db.frag, {foreignKey: 'dead_id'});
 db.frag.belongsTo(db.weapon, {foreignKey: 'weapon_id'});
 db.weapon.hasMany(db.frag, {foreignKey: 'weapon_id'});
 db.bomb.belongsTo(db.round, {foreignKey: 'round_id'});

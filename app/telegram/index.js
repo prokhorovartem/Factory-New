@@ -62,6 +62,26 @@ bot.onText(/\/player (.+)/, function (msg, match) {
             bot.sendMessage(msg.chat.id, resp);
     })
 });
+bot.onText(/\/killers/, function (msg) {
+    var resp = "Топ-10 киллеров:\n";
+    models.frag.findAll({
+        attributes: [[models.sequelize.fn('count', models.sequelize.col('frag.killer_id')), 'counter']],
+        include: [{
+            model: models.player,
+            required: true,
+            attributes: ['nickname']
+        }],
+        group: ['nickname', 'player.id'],
+        order: [[models.sequelize.fn('count', models.sequelize.col('frag.killer_id')), 'DESC']],
+        limit: 10
+    }).then(function (killers) {
+        console.log(killers[0].dataValues.counter);
+        for (var i = 0; i < killers.length; i++) {
+            resp += killers[i].player.nickname + " - " + killers[i].dataValues.counter + " фрага\n";
+        }
+        bot.sendMessage(msg.chat.id, resp);
+    })
+});
 
 // Простая команда без параметров.
 bot.on('message', function (msg) {
