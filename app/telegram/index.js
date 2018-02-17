@@ -49,32 +49,53 @@ bot.onText(/\/players/, function (msg) {
 bot.onText(/\/player (.+)/, function (msg, match) {
     var resp = match[1];
     models.team.findAll({
-        attributes: ['name'],
+        attributes: {
+            include: ['name'],
+            exclude: [
+                ['players->frags.id']
+            ]
+        },
         include: [{
             model: models.player,
             required: true,
             where: {
                 nickname: resp
             },
+            attributes: {
+                exclude: [
+                    ['players->frags.id']
+                ]
+            },
             include: [{
                 model: models.frag,
+                attributes: {
+                    include: [
+                        [models.sequelize.fn('count', models.sequelize.col('weapon_id')), 'counter']
+                    ],
+                    exclude: [
+                        ['players->frags.id']
+                    ]
+                },
                 required: true,
-                attributes: [[models.sequelize.fn('count', models.sequelize.col('weapon_id')), 'counter']],
                 include: [{
                     model: models.weapon,
                     required: true,
-                    attributes: ['name']
+                    attributes: {
+                        include:  ['name'],
+                        exclude: [
+                            ['players->frags.id']
+                        ]
+                    }
                 }]
             }]
         }],
-        group: ['nickname', 'weapon_id', 'players.id', 'team.name', 'team.id', 'players->frags.id', 'players->frags->weapon.id']
+        group: ['weapon_id', 'players.id', 'team.id', 'players->frags.id', 'players->frags->weapon.id']
     }).then(function (team) {
         var resp = "Никнейм: " + team[0].players[0].nickname + "\n" + "Имя: " +
             team[0].players[0].name + "\n" + "Фамилия: " + team[0].players[0].surname + "\n" +
             "Дата рождения: " + team[0].players[0].dateOfBirth  + "\n" + "Страна: " + team[0].players[0].country+ "\n" +
             "Старт карьеры: " + team[0].players[0].startOfCareer  + "\n" + "Команда: " +
-            team[0].name + "\n" + "Любимое оружие: " + team[0].players[0].frags[0].weapon.name + " (" + team[0].players[0].frags[0].dataValues.counter +
-            " фрагов)";
+            team[0].name + "\n" + "Любимое оружие: " + team[0].players[0].frags[0].weapon.name;
             bot.sendMessage(msg.chat.id, resp);
     })
 });
