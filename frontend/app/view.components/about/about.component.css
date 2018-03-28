@@ -1,0 +1,17 @@
+img{
+  margin-left: 0px;
+}
+div.container1 {
+  width: 30%;
+  max-width: 960px;
+  margin-left: 50px;
+}
+img {
+  width: 100%; /* ширина картинки */
+  height: auto; /* высота картинки */
+}
+div.container2 {
+  width: 30%;
+  max-width: 960px;
+  margin-right:  50px;
+}

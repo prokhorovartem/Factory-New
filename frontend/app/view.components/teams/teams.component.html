@@ -1,0 +1,12 @@
+<h1><i>О командах</i></h1>
+<p>Здесь будут появляться новости, о командах</p>
+
+<hr>
+<br>
+<ul>
+  <li *ngFor="let team of teams" (click)="onClick(team)">
+    <span>{{team}}</span>
+    <br>
+  </li>
+  <router-outlet></router-outlet>
+</ul>

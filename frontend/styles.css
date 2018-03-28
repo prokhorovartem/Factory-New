@@ -1,0 +1,153 @@
+/*!* You can add global styles to this file, and also import other style files *!*/
+/*!* Main menu *!*/
+/*body{*/
+  /*background-image: url("assets/BG.jpg");*/
+/*}*/
+/*.dws-menu *{*/
+  /*margin: 0;*/
+  /*padding: 0;*/
+/*}*/
+/*header{*/
+  /*margin-top: 25px;*/
+  /*font-family: Cuprum, Arial,Helvetical, sans-serif;*/
+/*}*/
+/*.dws-menu ul,*/
+/*.dws-menu ol{*/
+  /*list-style: none;*/
+/*}*/
+/*.dws-menu>ul{*/
+  /*display:flex;*/
+  /*justify-content: center;*/
+/*}*/
+/*.dws-menu>ul li a{*/
+  /*display: block;*/
+  /*background: #ececed;*/
+  /*padding: 15px 30px 15px 40px;*/
+  /*font-size: 14px;*/
+  /*color: #454547;*/
+  /*text-decoration: none;*/
+  /*text-transform: uppercase;*/
+  /*transition: all 0.3s ease;*/
+/*}*/
+/*.dws-menu > ul li{*/
+  /*position: relative;*/
+  /*border-right: 1px solid #c7c8ca;*/
+/*}*/
+/*.dws-menu > ul li > a i.fa{*/
+  /*position: absolute;*/
+  /*top: 15px;*/
+  /*left: 12px;*/
+  /*font-size: 18px;*/
+/*}*/
+/*.dws-menu > ul li:first-child{*/
+  /*border-left: 1px solid #b2b3b5;*/
+/*}*/
+/*.dws-menu > ul li:last-child{*/
+  /*border-right: 1px solid #babbbb;*/
+/*}*/
+/*.dws-menu li a:hover{*/
+  /*background: #454547;*/
+  /*color:#ffffff;*/
+  /*box-shadow: 1px 5px 10px -5px black;*/
+  /*transition: all 0.3s ease;*/
+/*}*/
+
+/*!* Sub-menu *!*/
+/*.dws-menu li ul{*/
+  /*position: absolute;*/
+  /*min-width: 196px;*/
+  /*display: none;*/
+/*}*/
+/*.dws-menu li > ul li{*/
+  /*border: 1px solid #c7c8ca;*/
+/*}*/
+/*.dws-menu li > ul li a{*/
+  /*padding: 10px;*/
+  /*text-transform: none;*/
+  /*background: #e4e4e5;*/
+/*}*/
+/*.dws-menu li > ul li ul{*/
+  /*position: absolute;*/
+  /*right: -196px;*/
+  /*top: 0;*/
+/*}*/
+/*.dws-menu li:hover > ul{*/
+  /*display: block;*/
+/*}*/
+
+/*.dws-menu [type="checkbox"],*/
+/*.dws-menu label.toggleSubmenu{*/
+  /*display: none;*/
+/*}*/
+/*.dws-menu label.toggleMenu{*/
+  /*background: #C9C9C9;*/
+  /*display: none;*/
+  /*padding: 15px 40px;*/
+  /*text-transform: uppercase;*/
+  /*font-size: 14px;*/
+  /*cursor: pointer;*/
+  /*position: relative;*/
+/*}*/
+
+/*.dws-menu label.toggleMenu .fa{*/
+  /*position: absolute;*/
+  /*top: 15px;*/
+  /*left: 12px;*/
+  /*font-size: 18px;*/
+/*}*/
+/*@media all and (max-width: 800px) {*/
+  /*.dws-menu{*/
+    /*overflow: hidden;*/
+  /*}*/
+  /*.dws-menu ul{*/
+    /*display: block;*/
+    /*max-height: 0;*/
+    /*transition: max-height 0.3s;*/
+  /*}*/
+  /*.dws-menu li>ul li ul{*/
+    /*position: absolute;*/
+    /*right: auto;*/
+    /*top: auto;*/
+  /*}*/
+  /*.dws-menu label.toggleMenu{*/
+    /*display: block;*/
+  /*}*/
+  /*input.toggleMenu:checked + label.toggleMenu{*/
+    /*background: #000000;*/
+    /*color: #ffffff;*/
+  /*}*/
+  /*input.toggleMenu:checked ~ ul,*/
+  /*input.toggleSubmenu:checked ~ ul{*/
+    /*display:block;*/
+    /*position: relative;*/
+    /*max-height: 5000px;*/
+    /*transition: max-height 2s ease-in;*/
+  /*}*/
+  /*.dws-menu label.toggleSubmenu{*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*cursor: pointer;*/
+    /*display: block;*/
+  /*}*/
+  /*input.toggleSubmenu:checked ~ a{*/
+    /*background: #454545;*/
+    /*color: #FFFFFF;*/
+  /*}*/
+  /*.dws-menu label.toggleSubmenu .fa:before{*/
+    /*content: "\f0d7";*/
+    /*color: #454547;*/
+  /*}*/
+  /*.dws-menu label.toggleSubmenu .fa{*/
+    /*position: absolute;*/
+    /*top: 15px;*/
+    /*right: 30px;*/
+  /*}*/
+  /*.dws-menu input.toggleSubmenu:checked ~ label.toggleSubmenu .fa::before{*/
+    /*content: "\f0d8";*/
+    /*color: #ffffff;*/
+  /*}*/
+
+/*}*/

@@ -1,0 +1,12 @@
+<h1><i>О турнирах</i></h1>
+<p>Здесь будут появляться списки турниров</p>
+<hr>
+<br>
+<div class="tournaments">
+<ul>
+  <li *ngFor="let tournament of tournaments" (click)="onClick(tournament)">
+    <span>{{tournament}}</span>
+    <br>
+  </li>
+</ul>
+</div>

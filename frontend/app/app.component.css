@@ -1,0 +1,17 @@
+header{
+  margin-top: 10px;
+}
+div.container1{
+}
+div.container2{
+}
+div.container3{
+  float: center;
+}
+div.container4{
+  float: center;
+}
+img {
+  width: 50%; /* ширина картинки */
+  height: auto; /* высота картинки */
+}

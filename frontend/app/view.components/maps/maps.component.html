@@ -1,0 +1,12 @@
+<h1><i>Карты</i></h1>
+<p>Здесь вы можете увидеть список доступных карт</p>
+
+<hr>
+<br>
+<ul>
+  <li *ngFor="let map of maps" (click)="onClick(map)">
+    <span>{{map}}</span>
+    <br>
+  </li>
+  <router-outlet></router-outlet>
+</ul>
