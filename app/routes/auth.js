@@ -1,9 +1,5 @@
 var authController = require('../controllers/authcontroller.js');
-const models = require('../models');
 module.exports = function(app,passport){
-    app.get('/teams', function () {
-      models.team.findAll();
-    });
     app.get('/signup', authController.signup);
     app.get('/signin', authController.signin);
     app.post('/signup', passport.authenticate('local-signup',  { successRedirect: '/dashboard',

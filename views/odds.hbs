@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Providence Коэффициенты</title>
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" href="/img/favicon.ico"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- Local stylesheet -->
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/odds.css">
+    <link rel="stylesheet" href="/css/menu.css">
+
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse sidebar navbar-position" role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-sidebar-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/main" style="padding: 12px 15px">
+                <img src="/img/mainLogo.png" style="height: 100%">
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/main">Статистика<span style="font-size:16px;"
+                                                    class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span></a>
+                </li>
+                <li class="active"><a href="#">Коэффициенты<span style="font-size:16px;"
+                                                                 class="pull-right hidden-xs showopacity glyphicon glyphicon-th"></span></a>
+                </li>
+                <li><a href="/logout">Выход<span style="font-size:16px;"
+                                                 class="pull-right hidden-xs showopacity glyphicon glyphicon-log-out"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div id="odds" class="main">
+
+    <div class="content-block">
+
+
+        <table id="odds-line" class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col" style="width: 40px">Л1</th>
+                <th scope="col">К1</th>
+                <th scope="col" style="width: 30px">П1</th>
+                <th scope="col" style="width: 30px">Н</th>
+                <th scope="col" style="width: 30px">П2</th>
+                <th scope="col" style="width: 40px">Л2</th>
+                <th scope="col">К2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(match, index_odds) in actual_odds">
+                <td>
+                    <img class="team-table-logo" v-bind:src="match.home_team.team_logo"
+                         alt="logo" onerror="this.src='/img/alterImg.png';"/>
+                </td>
+                <td>\{{ match.home_team.team_name }}</td>
+                <td><a v-bind:href="current_better_bookmaker"> \{{ getBetterCf(match.events, "HOME") }} </a></td>
+                <td><a v-bind:href="current_better_bookmaker"> \{{ getBetterCf(match.events, "DRAW") }} </a></td>
+                <td><a v-bind:href="current_better_bookmaker"> \{{ getBetterCf(match.events, "AWAY") }} </a></td>
+                <td>
+                    <img class="team-table-logo" v-bind:src="match.away_team.team_logo"
+                         alt="logo" onerror="this.src='/img/alterImg.png';"/>
+                </td>
+                <td>\{{ match.away_team.team_name }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+
+
+<script src="/js/odds.js"></script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'showteam/:team', component: TeamShowComponent},
   { path: 'showtournament/:tournament', component: TournamentShowComponent},
   { path: 'showmap/:map', component: MapShowComponent},
-  { path: '**', component: NotFoundComponent}
+  // { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

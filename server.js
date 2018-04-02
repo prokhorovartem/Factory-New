@@ -5,9 +5,10 @@ var session    = require('express-session')
 var bodyParser = require('body-parser')
 var env        = require('dotenv').load()
 var bot        = require('./app/telegram')
-var path       = require('path')
+// var path       = require('path')
+const expressHandlebars = require('express-handlebars');
 //For BodyParser
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // For Passport
@@ -15,24 +16,34 @@ app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}))
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'dist')));
+//
+// app.get('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'dist/index.html'))
+// });
+//
+// //For Handlebars
+// app.use(express.static(__dirname + '/app/FrontEnd'));
+// app.set('views', __dirname + '/app/FrontEnd/views');
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
 
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'))
-});
-
-//For Handlebars
-app.use(express.static(__dirname + '/app/FrontEnd'));
-app.set('views', __dirname + '/app/FrontEnd/views');
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-
+//Настройки Handlebars
+app.set('views', './views');
+app.engine('hbs', expressHandlebars({
+  extname: '.hbs'
+}));
+app.set('view engine', '.hbs');
+//Настройка статического пути (root)
+const path = require('path');
+app.use(express.static(path.join(__dirname, '/views')));
 
 //Models
 var models = require("./app/models");
 
 //Routes
 var authRoute = require('./app/routes/auth.js')(app,passport);
+require('./app/controllers/dataController')(app, models);
 
 //load passport strategies
 require('./app/config/passport/passport.js')(passport,models.user);
