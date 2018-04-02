@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'maps', component: MapsComponent},
-  { path: 'showteam/:team', component: TeamShowComponent},
+  { path: 'showteam/:team/:id', component: TeamShowComponent},
   { path: 'showtournament/:tournament', component: TournamentShowComponent},
   { path: 'showmap/:map', component: MapShowComponent},
   // { path: '**', component: NotFoundComponent}

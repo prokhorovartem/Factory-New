@@ -4,8 +4,13 @@
 <hr>
 <br>
 <ul>
-  <li *ngFor="let team of teams" (click)="onClick(team)">
-    <span>{{team}}</span>
+  <li *ngFor="let team of teams">
+    <a
+      [routerLink]="['/showteam', team.id, team.name]"
+      [queryParams]="{year: team.year, country: team.country}"
+    >
+      {{team.name}}
+    </a>
     <br>
   </li>
   <router-outlet></router-outlet>
