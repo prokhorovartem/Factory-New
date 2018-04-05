@@ -27,7 +27,6 @@ var db        = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.bomb = require('../models/bomb.js')(sequelize, Sequelize);
 db.frag = require('../models/frag.js')(sequelize, Sequelize);
 db.game = require('../models/game.js')(sequelize, Sequelize);
 db.match = require('../models/match.js')(sequelize, Sequelize);
@@ -68,12 +67,6 @@ db.frag.belongsTo(db.player, {foreignKey: 'killer_id'});
 db.player.hasMany(db.frag, {foreignKey: 'killer_id'});
 db.frag.belongsTo(db.weapon, {foreignKey: 'weapon_id'});
 db.weapon.hasMany(db.frag, {foreignKey: 'weapon_id'});
-db.bomb.belongsTo(db.round, {foreignKey: 'round_id'});
-db.round.hasMany(db.bomb, {foreignKey: 'round_id'});
-db.bomb.belongsTo(db.player, {foreignKey: 'bomber_id'});
-db.player.hasMany(db.bomb, {foreignKey: 'bomber_id'});
-db.bomb.belongsTo(db.player, {foreignKey: 'sapper_id'});
-db.player.hasMany(db.bomb, {foreignKey: 'sapper_id'});
 db.news.belongsTo(db.user, {foreignKey: 'user_id'});
 db.user.hasMany(db.news, {foreignKey: 'user_id'});
 

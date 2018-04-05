@@ -1,5 +1,3 @@
-/* jshint indent: 1 */
-
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('round', {
 		id: {
@@ -11,33 +9,23 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		gameId: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			field: 'game_id'
 		},
 		winnerId: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			field: 'winner_id'
 		},
 		mvpId: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			field: 'mvp_id'
-		},
-		roundStart: {
-			type: DataTypes.DATE,
-			allowNull: true,
-			field: 'round_start'
-		},
-		roundEnd: {
-			type: DataTypes.DATE,
-			allowNull: true,
-			field: 'round_end'
 		}
 	}, {
         timestamps: false,
         //freezeTableName - sequelize пытается обзывать таблицы во множественном числе
         freezeTableName: true,
-		tableName: 'round'
+		    tableName: 'round'
 	});
 };

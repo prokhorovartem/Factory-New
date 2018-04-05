@@ -42,12 +42,17 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			allowNull: true,
 			field: 'team_id'
-		}
+		},
+    favouriteWeapon: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'favourite_weapon'
+    }
 	}, {
         timestamps: false,
         //freezeTableName - sequelize пытается обзывать таблицы во множественном числе
         freezeTableName: true,
-		tableName: 'player'
+		    tableName: 'player'
 	});
     return Player;
 };

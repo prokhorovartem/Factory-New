@@ -1,5 +1,3 @@
-/* jshint indent: 1 */
-
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('match', {
 		id: {
@@ -21,13 +19,13 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		points1: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			defaultValue: '0',
 			field: 'points1'
 		},
 		points2: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			defaultValue: '0',
 			field: 'points2'
 		},
@@ -55,6 +53,6 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: false,
         //freezeTableName - sequelize пытается обзывать таблицы во множественном числе
         freezeTableName: true,
-		tableName: 'match'
+		    tableName: 'match'
 	});
 };

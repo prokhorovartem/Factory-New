@@ -18,16 +18,26 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			field: 'country'
 		},
-		yearOfEstablishment: {
-			type: DataTypes.DATEONLY,
-			allowNull: false,
-			field: 'year_of_establishment'
-		}
+    history: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'history'
+    },
+    favouriteMap: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'favourite_map'
+    },
+    amountOfPrizes: {
+		  type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'amount_of_prizes'
+    }
 	}, {
         timestamps: false,
         //freezeTableName - sequelize пытается обзывать таблицы во множественном числе
         freezeTableName: true,
-		tableName: 'team'
+		    tableName: 'team'
 	});
 	return Team;
 };

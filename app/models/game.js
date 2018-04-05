@@ -1,5 +1,3 @@
-/* jshint indent: 1 */
-
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('game', {
 		id: {
@@ -11,40 +9,30 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		matchId: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			field: 'match_id'
 		},
 		points1: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			defaultValue: '0',
 			field: 'points1'
 		},
 		points2: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			defaultValue: '0',
 			field: 'points2'
 		},
 		mvpId: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			field: 'mvp_id'
-		},
-		gameStart: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			field: 'game_start'
-		},
-		gameEnd: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			field: 'game_end'
 		}
 	}, {
         timestamps: false,
         //freezeTableName - sequelize пытается обзывать таблицы во множественном числе
         freezeTableName: true,
-		tableName: 'game'
+		    tableName: 'game'
 	});
 };

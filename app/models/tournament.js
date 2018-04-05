@@ -17,35 +17,20 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			field: 'start_date'
 		},
-		endDate: {
-			type: DataTypes.DATEONLY,
-			allowNull: true,
-			field: 'end_date'
-		},
-		country: {
-			type: DataTypes.STRING,
-			allowNull: true,
-			field: 'country'
-		},
-		city: {
-			type: DataTypes.STRING,
-			allowNull: true,
-			field: 'city'
-		},
 		winnerId: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
 			field: 'winner_id'
 		},
-		amountOfTeam: {
+		winnersPrize: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
-			field: 'amount_of_team'
+			allowNull: false,
+			field: 'winners_prize'
 		}
 	}, {
         timestamps: false,
         //freezeTableName - sequelize пытается обзывать таблицы во множественном числе
         freezeTableName: true,
-		tableName: 'tournament'
+		    tableName: 'tournament'
 	});
 };

@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		roundId: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			field: 'round_id'
 		},
 		killerId: {
@@ -19,18 +19,18 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		deadId: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			field: 'dead_id'
 		},
-        weaponId: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            field: 'weapon_id'
-        }
+    weaponId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'weapon_id'
+    }
 	}, {
         timestamps: false,
         //freezeTableName - sequelize пытается обзывать таблицы во множественном числе
         freezeTableName: true,
-		tableName: 'frag'
+		    tableName: 'frag'
 	});
 };
