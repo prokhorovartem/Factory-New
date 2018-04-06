@@ -1,4 +1,10 @@
 module.exports = function (app, models) {
+  function isLoggedIn (req, resp, next) {
+    if (req.isAuthenticated())
+      return next();
+    resp.redirect('/signin');
+  }
+
   app.get('/api/teams', function (req, res) {
     models.team.findAll().then(function (teams) {
       res.send(JSON.stringify(teams))
@@ -20,7 +26,7 @@ module.exports = function (app, models) {
       res.send(JSON.stringify(teams))
     })
   });
-  app.get('/api/tournaments/:id', function (req, res) {
+  app.get('/api/tournaments/:id', isLoggedIn, function (req, res) {
     models.tournament.findOne({
       where: {
         id: req.params.id
@@ -31,7 +37,7 @@ module.exports = function (app, models) {
         res.send('{}');
     })
   });
-  app.get('/api/tournaments/:id/matches', function (req, res) {
+  app.get('/api/tournaments/:id/matches', isLoggedIn, function (req, res) {
     models.match.findAll({
       where: {
         tournamentId: req.params.id
@@ -42,7 +48,7 @@ module.exports = function (app, models) {
         res.send('{}');
     })
   });
-  app.get('/api/tournaments/:id/:match/games', function (req, res) {
+  app.get('/api/tournaments/:id/:match/games', isLoggedIn, function (req, res) {
     models.game.findAll({
       include: [{
         model: models.match,
@@ -64,7 +70,7 @@ module.exports = function (app, models) {
         res.send('{}');
     })
   });
-  app.get('/api/tournaments/:id/:match/:game', function (req, res) {
+  app.get('/api/tournaments/:id/:match/:game', isLoggedIn, function (req, res) {
     models.round.findAll({
       include: [{
         model: models.game,

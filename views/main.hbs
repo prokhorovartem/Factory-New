@@ -2,208 +2,26 @@
 <html>
 
 <head>
-    <title>Providence Статистика</title>
+    <title>Главная страница</title>
     <meta charset="UTF-8">
-
-    <link rel="shortcut icon" href="/img/favicon.ico"/>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- for sorted tables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <!-- Local stylesheet -->
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/menu.css">
-
-    <!-- Vue -->
-    <script src="https://unpkg.com/vue"></script>
 </head>
-
 <body>
 
 <nav class="navbar navbar-inverse sidebar navbar-position" role="navigation">
     <div class="container-fluid">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-sidebar-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="/main" style="padding: 12px 15px">
-                <img src="/img/mainLogo.png" style="height: 100%">
-            </a>
-        </div>
-
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Статистика<span style="font-size:16px;"
-                                                               class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span></a>
-                </li>
-                <li><a href="/odds">Коэффициенты<span style="font-size:16px;"
-                                                      class="pull-right hidden-xs showopacity glyphicon glyphicon-th"></span></a>
-                </li>
-                <li><a href="/logout">Выход<span style="font-size:16px;"
-                                                 class="pull-right hidden-xs showopacity glyphicon glyphicon-log-out"></span></a>
+                <li><a href="/logout">Выход</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-
 <div id="app-1" class="main">
 
-    <div class="content-block">
-
-        <ul class="nav nav-tabs">
-            <li v-for="(lg, lg_index_nav) in leagues" v-bind:class="[(lg_index_nav == 0) ? 'active' : ' ']">
-                <a data-toggle="tab" v-bind:href="'#' + lg.league_code"> \{{ lg.league_name }} </a>
-            </li>
-        </ul>
-
-        <div class="tab-content">
-            <div v-for="(lg, index_lg) in leagues" v-bind:id="lg.league_code"
-                 v-bind:class="'tab-pane fade league-panel' + [(index_lg == 0) ? ' active in' : ' ']">
-
-
-                <button class="btn btn-info" style="width: 100%"
-                        data-toggle="modal" v-bind:data-target="'#matches_list_' + lg.league_code">
-                    Расписание матчей
-                </button>
-                <div v-bind:id="'matches_list_' + lg.league_code" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button class="close" data-dismiss="modal">X</button>
-                                <h4 class="modal-title">Расписание и результаты матчей : \{{ lg.league_name }}</h4>
-                            </div>
-                            <div class="modal-body">
-                                <table id="matches-table" class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Дата матча</th>
-                                        <th scope="col">Принимающая команда</th>
-                                        <th scope="col">Счёт</th>
-                                        <th scope="col">Команда гостей</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="(match, index_match) in leagues_matches[index_lg]">
-                                        <th scope="row">\{{ index_match + 1 }}</th>
-                                        <td>\{{ match.match_date | formatDate }}</td>
-                                        <td>\{{ match.home_team.team_name }}</td>
-                                        <td>\{{ match.home_team_goals }} - \{{ match.away_team_goals }}</td>
-                                        <td>\{{ match.away_team.team_name }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Mathes list -->
-
-                <table v-bind:id="'leagues-table-' + lg.league_code" class="table table-hover table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col" style="width: 40px">Л</th>
-                        <th scope="col">Команда</th>
-                        <th scope="col">И</th>
-                        <th scope="col">B</th>
-                        <th scope="col">Н</th>
-                        <th scope="col">П</th>
-                        <th scope="col">О</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="(teams, index_teams) in leagues_stats[index_lg].league_participation">
-                        <td><img class="team-table-logo" v-bind:src="teams.team.team_logo"
-                                 alt="logo" onerror="this.src='/img/alterImg.png';"/></td>
-                        <td>
-                            <button class="team-button btn btn-default"
-                                    data-toggle="modal" v-bind:data-target="'#team_' + teams.team.team_id">
-                                \{{ teams.team.team_name }}
-                            </button>
-
-                            <div v-bind:id="'team_' + teams.team.team_id" class="modal fade">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button class="close" data-dismiss="modal">X</button>
-                                            <h4 class="modal-title"> \{{ teams.team.team_name }}</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <center>
-                                                <img class="team-info-logo" v-bind:src="teams.team.team_logo"
-                                                     alt="Team_Logo" onerror="this.src='/img/alterImg.png';"/>
-                                                <h1>\{{ teams.team.team_name }}</h1>
-                                            </center>
-                                            <table id="team-matches-table" class="table table-hover">
-                                                <thead>
-                                                <tr>
-                                                    <th scope="col">Дата матча</th>
-                                                    <th scope="col">Принимающая команда</th>
-                                                    <th scope="col">Счёт</th>
-                                                    <th scope="col">Команда гостей</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr v-for="(team_match, index_team_match) in leagues_matches[index_lg]"
-                                                    v-if="teams.team.team_name == team_match.home_team.team_name ||
-                                                            teams.team.team_name == team_match.away_team.team_name">
-                                                    <td>\{{ team_match.match_date | formatDate }}</td>
-                                                    <td>\{{ team_match.home_team.team_name }}</td>
-                                                    <td>\{{ team_match.home_team_goals }} - \{{
-                                                        team_match.away_team_goals }}
-                                                    </td>
-                                                    <td>\{{ team_match.away_team.team_name }}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Teams info -->
-                        </td>
-                        <td>\{{ teams.wins + teams.draws + teams.loses }}</td>
-                        <td>\{{ teams.wins }}</td>
-                        <td>\{{ teams.draws }}</td>
-                        <td>\{{ teams.loses }}</td>
-                        <td>\{{ teams.wins * 3 + teams.draws }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-
-            </div>
-        </div>
-
-    </div>
+    УРА, ГЛАВНАЯ СТРАНИЦА
 
 </div>
-
-<script src="/js/main.js"></script>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-<script src="/js/dataTable.js"></script>
-
 </body>
-
 </html>

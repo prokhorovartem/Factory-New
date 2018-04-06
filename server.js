@@ -1,18 +1,23 @@
-var express    = require('express')
-var app        = express()
-var passport   = require('passport')
-var session    = require('express-session')
-var bodyParser = require('body-parser')
-var env        = require('dotenv').load()
-var bot        = require('./app/telegram')
-// var path       = require('path')
+var express    = require('express');
+var app        = express();
+var passport   = require('passport');
+var session    = require('express-session');
+var bodyParser = require('body-parser');
+var env        = require('dotenv').load();
+var path       = require('path');
 const expressHandlebars = require('express-handlebars');
+const flash = require('connect-flash');
+
+require('./app/telegram');
+
 //For BodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(flash());
+
 // For Passport
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized: true})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -35,18 +40,18 @@ app.engine('hbs', expressHandlebars({
 }));
 app.set('view engine', '.hbs');
 //Настройка статического пути (root)
-const path = require('path');
 app.use(express.static(path.join(__dirname, '/views')));
 
 //Models
 var models = require("./app/models");
 
 //Routes
-var authRoute = require('./app/routes/auth.js')(app,passport);
+require('./app/routes/authRoute.js')(app,passport);
+require('./app/routes/contentRoute')(app, passport);
 require('./app/controllers/dataController')(app, models);
 
 //load passport strategies
-require('./app/config/passport/passport.js')(passport,models.user);
+require('./app/config/passport/passport.js')(passport, models.user);
 
 //Sync Database
 models.sequelize.sync({
