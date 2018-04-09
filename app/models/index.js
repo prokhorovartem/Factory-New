@@ -1,28 +1,10 @@
-"use strict";
-
-var fs        = require("fs");
-var path      = require("path");
+var fs = require("fs");
+var path = require("path");
 var Sequelize = require("sequelize");
-var env       = process.env.NODE_ENV || "development";
-var config    = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
+var env = process.env.NODE_ENV || "development";
+var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
-var db        = {};
-
-// fs
-//     .readdirSync(__dirname)
-//     .filter(function(file) {
-//         return (file.indexOf(".") !== 0) && (file !== "index.js");
-//     })
-//     .forEach(function(file) {
-//         var model = sequelize.import(path.join(__dirname, file));
-//         db[model.name] = model;
-//     });
-
-// Object.keys(db).forEach(function(modelName) {
-//     if ("associate" in db[modelName]) {
-//         db[modelName].associate(db);
-//     }
-// });
+var db = {};
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
@@ -41,6 +23,8 @@ db.news = require('../models/news.js')(sequelize, Sequelize);
 //Relations
 db.player.belongsTo(db.team);
 db.team.hasMany(db.player);
+db.player.belongsTo(db.weapon, {foreignKey: 'weapon_id'});
+db.weapon.hasMany(db.player, {foreignKey: 'weapon_id'});
 db.tournament.belongsTo(db.team, {foreignKey: 'winner_id'});
 db.team.hasMany(db.tournament, {foreignKey: 'winner_id'});
 db.match.belongsTo(db.team, {foreignKey: 'team1_id'});

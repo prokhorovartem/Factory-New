@@ -1,5 +1,5 @@
 module.exports = function (app, models) {
-  function isLoggedIn (req, resp, next) {
+  function isLoggedIn(req, resp, next) {
     if (req.isAuthenticated())
       return next();
     resp.redirect('/signin');

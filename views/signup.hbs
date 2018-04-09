@@ -2,40 +2,42 @@
 <html>
 
 <head>
-    <title>Регистрация</title>
-    <meta charset="UTF-8">
+  <title>Регистрация</title>
+  <meta charset="UTF-8">
 </head>
 
 <body>
-  <form class="signin" method="post" action="/signup">
+<form class="signin" method="post" action="/signup">
 
-      <div class="form-group">
-          <label for="username">Придумайте логин</label>
-          <input id="username" class="form-control" name="username" type="text"
-                 placeholder="логин" value="{{username}}">
-      </div><BR>
-      <div class="form-group">
-          <label for="password">Придумайте пароль</label>
-          <input id="password" name="password" type="password" class="form-control" placeholder="пароль">
-      </div><BR>
-      <div class="form-group">
-          <label for="passwordRepeat">Повторите пароль</label>
-          <input id="passwordRepeat" name="passwordRepeat" type="password" class="form-control"
-                 placeholder="повторите пароль">
-      </div><BR>
-      <div class="error-msg">{{message}}</div>
-      <button id="btn-signin" class="btn btn-primary" type="submit">Зарегистрироваться</button><BR>
-      <span class="left link">
+  <div class="form-group">
+    <label for="username">Придумайте логин</label>
+    <input id="username" class="form-control" name="username" type="text"
+           placeholder="логин" value="{{username}}">
+  </div>
+  <BR>
+  <div class="form-group">
+    <label for="password">Придумайте пароль</label>
+    <input id="password" name="password" type="password" class="form-control" placeholder="пароль">
+  </div>
+  <BR>
+  <div class="form-group">
+    <label for="passwordRepeat">Повторите пароль</label>
+    <input id="passwordRepeat" name="passwordRepeat" type="password" class="form-control"
+           placeholder="повторите пароль">
+  </div>
+  <BR>
+  <div class="error-msg">{{message}}</div>
+  <button id="btn-signin" class="btn btn-primary" type="submit">Зарегистрироваться</button>
+  <BR>
+  <span class="left link">
                   <a href="/auth/vk">
                       Зайти через ВК
                   </a>
               </span><BR>
-      <span class="right link"><a href="/signin">Войти</a></span><BR>
+  <span class="right link"><a href="/signin">Войти</a></span><BR>
 
 
-
-
-  </form>
+</form>
 </body>
 
 </html>
