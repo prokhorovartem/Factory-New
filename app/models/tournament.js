@@ -25,7 +25,8 @@ module.exports = function (sequelize, DataTypes) {
     winnersPrize: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'winners_prize'
+      field: 'winners_prize',
+      defaultValue: '0'
     }
   }, {
     timestamps: false,

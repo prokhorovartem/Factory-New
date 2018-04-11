@@ -32,6 +32,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       field: 'amount_of_prizes',
       defaultValue: '0'
+    },
+    yearOfEstablishment: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      field: 'year_of_establishment'
     }
   }, {
     timestamps: false,

@@ -43,9 +43,10 @@ module.exports = function (sequelize, DataTypes) {
       field: 'team_id'
     },
     weaponId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'weapon_id'
+      field: 'weapon_id',
+      defaultValue: '1'
     }
   }, {
     timestamps: false,

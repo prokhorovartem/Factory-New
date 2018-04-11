@@ -28,12 +28,11 @@ bot.onText(/\/team (.+)/, function (msg, match) {
     }
   }).then(function (team) {
     var resp = "Название: " + team[0].name + "\n" + "Страна: " +
-      team[0].country + "\n" + "Дата создания: " + team[0].yearOfEstablishment + "\n" +
-      "Игроки: \n";
-    for (var i = 0; i < 2; i++) {
+      team[0].country + "\n" + "Дата создания: " + team[0].yearOfEstablishment + "\n" + "Любимая карта: " +
+      team[0].favouriteMap + "\n" + "Выиграно призовых: " + team[0].amountOfPrizes + "\n" + "Игроки: \n";
+    for (var i = 0; i < team[0].players.length; i++) {
       resp += team[0].players[i].nickname + "\n";
     }
-
     bot.sendMessage(msg.chat.id, resp);
   })
 });
@@ -50,10 +49,7 @@ bot.onText(/\/player (.+)/, function (msg, match) {
   var resp = match[1];
   models.team.findAll({
     attributes: {
-      include: ['name'],
-      exclude: [
-        ['players->frags.id']
-      ]
+      include: ['name']
     },
     include: [{
       model: models.player,
@@ -61,44 +57,24 @@ bot.onText(/\/player (.+)/, function (msg, match) {
       where: {
         nickname: resp
       },
-      attributes: {
-        exclude: [
-          ['players->frags.id']
-        ]
-      },
       include: [{
-        model: models.frag,
-        attributes: {
-          include: [
-            [models.sequelize.fn('count', models.sequelize.col('weapon_id')), 'counter']
-          ],
-          exclude: [
-            ['players->frags.id']
-          ]
-        },
+        model: models.weapon,
         required: true,
-        include: [{
-          model: models.weapon,
-          required: true,
-          attributes: {
-            include: ['name'],
-            exclude: [
-              ['players->frags.id']
-            ]
-          }
-        }]
+        attributes: {
+          include: ['name']
+        }
       }]
-    }],
-    group: ['weapon_id', 'players.id', 'team.id', 'players->frags.id', 'players->frags->weapon.id']
+    }]
   }).then(function (team) {
     var resp = "Никнейм: " + team[0].players[0].nickname + "\n" + "Имя: " +
       team[0].players[0].name + "\n" + "Фамилия: " + team[0].players[0].surname + "\n" +
       "Дата рождения: " + team[0].players[0].dateOfBirth + "\n" + "Страна: " + team[0].players[0].country + "\n" +
       "Старт карьеры: " + team[0].players[0].startOfCareer + "\n" + "Команда: " +
-      team[0].name + "\n" + "Любимое оружие: " + team[0].players[0].frags[0].weapon.name;
+      team[0].name + "\n" + "Любимое оружие: " + team[0].players[0].weapon.name;
     bot.sendMessage(msg.chat.id, resp);
   })
-});
+})
+;
 bot.onText(/\/killers/, function (msg) {
   var resp = "Топ-10 киллеров:\n";
   models.frag.findAll({
