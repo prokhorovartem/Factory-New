@@ -21,26 +21,20 @@ app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized: true})
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-// app.use(express.static(path.join(__dirname, 'dist')));
-//
-// app.get('*', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'dist/index.html'))
-// });
-//
-// //For Handlebars
-// app.use(express.static(__dirname + '/app/FrontEnd'));
-// app.set('views', __dirname + '/app/FrontEnd/views');
-// app.engine('html', require('ejs').renderFile);
-// app.set('view engine', 'html');
+//For Handlebars
+app.use(express.static(path.join(__dirname, 'dist')));
+app.set('views', __dirname + '/app/FrontEnd/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
-//Настройки Handlebars
-app.set('views', './views');
-app.engine('hbs', expressHandlebars({
-  extname: '.hbs'
-}));
-app.set('view engine', '.hbs');
-//Настройка статического пути (root)
-app.use(express.static(path.join(__dirname, '/views')));
+// //Настройки Handlebars
+// app.set('views', './views');
+// app.engine('hbs', expressHandlebars({
+//   extname: '.hbs'
+// }));
+// app.set('view engine', '.hbs');
+// //Настройка статического пути (root)
+// app.use(express.static(path.join(__dirname, '/views')));
 
 //Models
 var models = require("./app/models");
