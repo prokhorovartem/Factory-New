@@ -48,7 +48,7 @@ module.exports = function (app, models) {
         res.send('{}');
     })
   });
-  app.get('/api/tournaments/:id/:match/games', isLoggedIn, function (req, res) {
+  app.get('/api/tournaments/:id/:matches/games', isLoggedIn, function (req, res) {
     models.game.findAll({
       include: [{
         model: models.match,
@@ -70,7 +70,7 @@ module.exports = function (app, models) {
         res.send('{}');
     })
   });
-  app.get('/api/tournaments/:id/:match/:game', isLoggedIn, function (req, res) {
+  app.get('/api/tournaments/:id/:matches/:game', isLoggedIn, function (req, res) {
     models.round.findAll({
       include: [{
         model: models.game,
