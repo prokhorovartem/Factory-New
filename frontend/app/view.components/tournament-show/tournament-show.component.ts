@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {HttpClient, HttpClientModule, HttpParams} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-tournament-show',
@@ -9,8 +10,10 @@ import {HttpClient} from '@angular/common/http';
 })
 export class TournamentShowComponent implements OnInit {
   id: string;
-  private  tournament: Object;
-  constructor(private activateRoute: ActivatedRoute, private http: HttpClient) { }
+  private tournament: Object;
+
+  constructor(private activateRoute: ActivatedRoute, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.id = this.activateRoute.snapshot.params['id'];
