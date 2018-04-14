@@ -24,7 +24,7 @@ module.exports = function (app, models) {
   app.get('/api/teams/:id/players', function (req, res) {
     models.player.findAll({
       where:{
-        teamId: req.params.name
+        teamId: req.params.id
       }
     }).then(function (players) {
       players ?
