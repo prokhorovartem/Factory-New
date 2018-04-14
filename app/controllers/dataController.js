@@ -48,7 +48,7 @@ module.exports = function (app, models) {
       limit: 5
     }).then(function (matches) {
       matches ?
-        res.send(JSON.stringify(matches)) :
+        res.send(JSON.stringify(matches, "", 4)) :
         res.send('{}')
     })
   });
@@ -73,7 +73,7 @@ module.exports = function (app, models) {
       }]
     }).then(function (player) {
       player ?
-        res.send(JSON.stringify(player)) :
+        res.send(JSON.stringify(player, "", 4)) :
         res.send('{}')
     })
   });

@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   { path: 'teams/:id', component: TeamShowComponent},
   { path: 'tournaments/:id', component: TournamentShowComponent},
   { path: 'showmap/:map', component: MapShowComponent},
-  { path: 'player/:id/:teamName', component: PlayerShowComponent}
+  { path: 'player/:id', component: PlayerShowComponent}
   // { path: '**', component: NotFoundComponent}
 ];
 

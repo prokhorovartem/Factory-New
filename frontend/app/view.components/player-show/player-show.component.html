@@ -1,19 +1,17 @@
 <div class="playershow">
-<h2>{{player.nickname}}</h2>
+  <h2>{{player[0].players[0].nickname}}</h2>
   <br>
-  <b>Имя: </b><a>{{player.name}}</a>
+  <b>Имя: </b><a>{{player[0].players[0].name}}</a>
   <br>
-  <b>Фамилия: </b><a>{{player.surname}}</a>
+  <b>Фамилия: </b><a>{{player[0].players[0].surname}}</a>
   <br>
-  <b>Дата рождения: </b><a>{{player.dateOfBirth}}</a>
+  <b>Дата рождения: </b><a>{{player[0].players[0].dateOfBirth}}</a>
   <br>
-  <b>Страна: </b><a>{{player.country}}</a>
+  <b>Страна: </b><a>{{player[0].players[0].country}}</a>
   <br>
-  <b>Начало карьеры: </b><a>{{player.startOfCareer}}</a>
+  <b>Начало карьеры: </b><a>{{player[0].players[0].startOfCareer}}</a>
   <br>
-  <b>Название команды: </b><a [routerLink]="['/teams', id]">{{teamName}}</a>
+  <b>Название команды: </b><a>{{player[0].name}}</a>
   <br>
-  <b>WeaponId</b><a> //Не совсем понял что это</a>
-  <br>
-  <b>weapon_id</b><a> //И это...Наверное любимое оружие.</a>
+  <b>Любимое оружие: </b><a>{{player[0].players[0].weapon.name}}</a>
 </div>
