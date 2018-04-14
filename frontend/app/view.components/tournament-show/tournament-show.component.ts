@@ -11,6 +11,7 @@ import {HttpClient, HttpClientModule, HttpParams} from '@angular/common/http';
 export class TournamentShowComponent implements OnInit {
   id: string;
   private tournament: Object;
+  private matches: Object;
 
   constructor(private activateRoute: ActivatedRoute, private http: HttpClient) {
   }
@@ -19,6 +20,9 @@ export class TournamentShowComponent implements OnInit {
     this.id = this.activateRoute.snapshot.params['id'];
     this.http.get('http://localhost:5000/api/tournaments/' + this.id).subscribe(data => {
       this.tournament = data;
+    });
+    this.http.get('http://localhost:5000/api/tournaments/' + this.id + '/matches').subscribe(data => {
+      this.matches = data;
     });
   }
 

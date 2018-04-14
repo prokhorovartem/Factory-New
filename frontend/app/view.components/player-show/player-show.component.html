@@ -1,23 +1,19 @@
 <div class="playershow">
-<p>Информация об игроке... {{id}}</p>
+<h2>{{player.nickname}}</h2>
   <br>
-  <b>Имя: </b><p>{{player.name}}</p>
+  <b>Имя: </b><a>{{player.name}}</a>
   <br>
-  <b>Фамилия: </b><p>{{player.surname}}</p>
+  <b>Фамилия: </b><a>{{player.surname}}</a>
   <br>
-  <b>Дата рождения: </b><p>{{player.dateOfBirth}}</p>
+  <b>Дата рождения: </b><a>{{player.dateOfBirth}}</a>
   <br>
-  <b>Никнейм: </b><p>{{player.nickname}}</p>
+  <b>Страна: </b><a>{{player.country}}</a>
   <br>
-  <b>Страна: </b><p>{{player.country}}</p>
+  <b>Начало карьеры: </b><a>{{player.startOfCareer}}</a>
   <br>
-  <b>Начало карьеры: </b><p>{{player.startOfCareer}}</p>
+  <b>Название команды: </b><a [routerLink]="['/teams', id]">{{teamName}}</a>
   <br>
-  <b>ID команды: </b><p>{{player.teamId}}</p>
+  <b>WeaponId</b><a> //Не совсем понял что это</a>
   <br>
-  <b>Название команды:</b><a [routerLink]="['/teams', id]"> {{teamName}}</a>
-  <br>
-  <b>WeaponId</b><p> //Не совсем понял что это</p>
-  <br>
-  <b>weapon_id</b><p> //И это...Наверное любимое оружие.</p>
+  <b>weapon_id</b><a> //И это...Наверное любимое оружие.</a>
 </div>

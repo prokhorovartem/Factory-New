@@ -1,13 +1,23 @@
 <div class="tournamentshow">
-  <p>
-    Информация о турнире...{{id}}
-  </p>
+  <h2>
+    {{tournament.name}}
+  </h2>
   <br>
-  <b>Название турнира: {{tournament.name}}</b>
+  <b>Дата начала проведения: </b><a>{{tournament.startDate}}</a>
   <br>
-  <p>Дата начала проведения: {{tournament.startDate}}</p>
+  <b>ID победителей турнира: </b><a>{{tournament.winnerId}}</a>
   <br>
-  <p>ID победителей турнира: {{tournament.winnerId}}</p>
+  <b>Призовой фонд: </b><a>{{tournament.winnersPrize}} руб.</a>
   <br>
-  <p>Призовой фонд: {{tournament.winnersPrize}} руб.</p>
+  <a>Список сыгранных матчей:</a>
+  <br>
+  <ul>
+    <li *ngFor="let match of matches">
+      <a
+        [routerLink]="['/match', match.id, tournament.name]"
+      > ID матча:
+        {{match.id}}
+      </a>
+    </li>
+  </ul>
 </div>

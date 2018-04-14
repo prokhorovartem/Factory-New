@@ -3,19 +3,19 @@
   Информация о команде...{{id}}
 </p>
   <br>
-  <b>Название команды: {{team.name}}</b>
+  <b>Название команды:</b><a> {{team.name}}</a>
   <br>
-  <p>Страна: {{team.country}}</p>
+  <b>Страна: </b><a>{{team.country}}</a>
   <br>
   <b>Краткая история команды:</b>
   <br>
   <i>{{team.history}}</i>
   <br>
-  <p>Любимая карта команды: {{team.favouriteMap}}</p>
+  <b>Любимая карта команды: </b><a>{{team.favouriteMap}}</a>
   <br>
-  <p>Выигрыш: {{team.amountOfPrizes}}</p>
+  <b>Выигрыш: </b><a>{{team.amountOfPrizes}}</a>
   <br>
-  <p>Дата дебюта: {{team.yearOfEstablishment}}</p>
+  <b>Дата дебюта: </b><a>{{team.yearOfEstablishment}}</a>
   <br>
   <b>Список игроков:</b>
   <br>
@@ -24,7 +24,7 @@
       <a
         [routerLink]="['/player', player.id, team.name]"
       >
-        {{player.name}}
+        {{player.nickname}}
       </a>
     </li>
   </ul>
