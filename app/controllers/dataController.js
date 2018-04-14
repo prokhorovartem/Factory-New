@@ -23,7 +23,7 @@ module.exports = function (app, models) {
   });
   app.get('/api/teams/:id/players', function (req, res) {
     models.player.findAll({
-      where:{
+      where: {
         teamId: req.params.id
       }
     }).then(function (players) {
@@ -53,13 +53,27 @@ module.exports = function (app, models) {
     })
   });
   app.get('/api/players/:id', function (req, res) {
-    models.player.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (players) {
-      players ?
-        res.send(JSON.stringify(players)) :
+    models.team.findAll({
+      attributes: {
+        include: ['name']
+      },
+      include: [{
+        model: models.player,
+        required: true,
+        where: {
+          id: req.params.id
+        },
+        include: [{
+          model: models.weapon,
+          required: true,
+          attributes: {
+            include: ['name']
+          }
+        }]
+      }]
+    }).then(function (player) {
+      player ?
+        res.send(JSON.stringify(player)) :
         res.send('{}')
     })
   });
