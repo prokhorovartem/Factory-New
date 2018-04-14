@@ -21,6 +21,32 @@ module.exports = function (app, models) {
         res.send('{}');
     })
   });
+  app.get('/api/teams/:id/players', function (req, res) {
+    models.player.findAll({
+      include: [{
+        model: models.team,
+        required: true,
+        where: {
+          id: req.params.id
+        }
+      }]
+    }).then(function (players) {
+      players ?
+        res.send(JSON.stringify(players)) :
+        res.send('{}')
+    })
+  });
+  app.get('/api/players/:id', function (req, res) {
+    models.player.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (players) {
+      players ?
+        res.send(JSON.stringify(players)) :
+        res.send('{}')
+    })
+  });
   app.get('/api/tournaments', function (req, res) {
     models.tournament.findAll().then(function (teams) {
       res.send(JSON.stringify(teams))
