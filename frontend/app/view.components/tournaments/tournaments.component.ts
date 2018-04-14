@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-tournaments',
@@ -7,15 +8,13 @@ import { Router} from '@angular/router';
   styleUrls: ['./tournaments.component.css']
 })
 export class TournamentsComponent implements OnInit {
-  tournaments = ['Tournament1', 'Tournament2', 'Tournament3', 'Tournament4', 'Tournament5'];
+  private tournaments: Object;
 
-  constructor(private router: Router) { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.http.get('http://localhost:5000/api/tournaments').subscribe(data => {
+      this.tournaments = data;
+    });
   }
-
-  onClick(tournament: string) {
-    this.router.navigate(['showtournament', tournament]);
-  }
-
 }

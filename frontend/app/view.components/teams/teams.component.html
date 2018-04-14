@@ -6,8 +6,7 @@
 <ul>
   <li *ngFor="let team of teams">
     <a
-      [routerLink]="['/showteam', team.id, team.name]"
-      [queryParams]="{year: team.year, country: team.country}"
+      [routerLink]="['/teams', team.id]"
     >
       {{team.name}}
     </a>

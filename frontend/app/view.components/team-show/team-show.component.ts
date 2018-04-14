@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpClientModule, HttpParams} from '@angular/common/http';
 
 
 @Component({
@@ -9,21 +9,16 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./team-show.component.css']
 })
 export class TeamShowComponent implements OnInit {
-  name: string;
-  id: number;
-  year: number;
-  country: string;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  id: string;
+  private team: Object;
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
 
-  ngOnInit() {
-     this.name = this.activatedRoute.snapshot.params['name'];
+  ngOnInit(): void {
      this.id = this.activatedRoute.snapshot.params['id'];
-     this.year = this.activatedRoute.snapshot.queryParams['year'];
-     this.country = this.activatedRoute.snapshot.queryParams['country'];
-
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.name = params['name'];
+     //const params = new HttpParams().set('id', (this.id).toString());
+     //const options = {params: params};
+     this.http.get('http://localhost:5000/api/teams/' + this.id).subscribe(data => {
+      this.team = data;
     });
   }
 

@@ -27,14 +27,14 @@ app.set('views', __dirname + '/app/FrontEnd/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-// //Настройки Handlebars
-// app.set('views', './views');
-// app.engine('hbs', expressHandlebars({
-//   extname: '.hbs'
-// }));
-// app.set('view engine', '.hbs');
-// //Настройка статического пути (root)
-// app.use(express.static(path.join(__dirname, '/views')));
+//Настройки Handlebars
+ app.set('views', './views');
+ app.engine('hbs', expressHandlebars({
+   extname: '.hbs'
+ }));
+ app.set('view engine', '.hbs');
+ //Настройка статического пути (root)
+ app.use(express.static(path.join(__dirname, '/views')));
 
 //Models
 var models = require("./app/models");
@@ -49,7 +49,7 @@ require('./app/config/passport/passport.js')(passport, models.user);
 
 //Sync Database
 models.sequelize.sync({
-  // force: true
+   force: true
 }).then(function(){
     console.log('Nice! Database looks fine')
 }).catch(function(err){

@@ -4,9 +4,14 @@
 <br>
 <div class="tournaments">
 <ul>
-  <li *ngFor="let tournament of tournaments" (click)="onClick(tournament)">
-    <span>{{tournament}}</span>
+  <li *ngFor="let tournament of tournaments">
+    <a
+      [routerLink]="['/tournaments', tournament.id]"
+    >
+      {{tournament.name}}
+    </a>
     <br>
   </li>
+  <router-outlet></router-outlet>
 </ul>
 </div>

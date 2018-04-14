@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-tournament-show',
@@ -7,12 +8,15 @@ import { ActivatedRoute} from '@angular/router';
   styleUrls: ['./tournament-show.component.css']
 })
 export class TournamentShowComponent implements OnInit {
-  tournament: string;
-  constructor(private activateRoute: ActivatedRoute) {
-    this.tournament = this.activateRoute.snapshot.params['tournament'];
-  }
+  id: string;
+  private  tournament: Object;
+  constructor(private activateRoute: ActivatedRoute, private http: HttpClient) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.id = this.activateRoute.snapshot.params['id'];
+    this.http.get('http://localhost:5000/api/tournaments/' + this.id).subscribe(data => {
+      this.tournament = data;
+    });
   }
 
 }

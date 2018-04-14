@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-maps',
@@ -8,11 +9,14 @@ import {Router} from '@angular/router';
 })
 export class MapsComponent implements OnInit {
 
-  maps = ['map1', 'map2', 'map3', 'map4', 'map5'];
+  private maps: Object;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.http.get('http://localhost:5000/api/teams').subscribe(data => {
+      this.maps = data;
+    });
   }
 
   onClick(map: string) {
