@@ -23,16 +23,32 @@ module.exports = function (app, models) {
   });
   app.get('/api/teams/:id/players', function (req, res) {
     models.player.findAll({
-      include: [{
-        model: models.team,
-        required: true,
-        where: {
-          id: req.params.id
-        }
-      }]
+      where:{
+        teamId: req.params.name
+      }
     }).then(function (players) {
       players ?
         res.send(JSON.stringify(players)) :
+        res.send('{}')
+    })
+  });
+  app.get('/api/teams/:id/matches', function (req, res) {
+    models.match.findAll({
+      where: {
+        $or: [
+          {
+            team1Id: req.params.id
+          },
+          {
+            team2Id: req.params.id
+          }
+        ]
+      },
+      order: [['matchBegin', 'DESC']],
+      limit: 5
+    }).then(function (matches) {
+      matches ?
+        res.send(JSON.stringify(matches)) :
         res.send('{}')
     })
   });
@@ -44,6 +60,50 @@ module.exports = function (app, models) {
     }).then(function (players) {
       players ?
         res.send(JSON.stringify(players)) :
+        res.send('{}')
+    })
+  });
+  app.get('/api/matches/:id', function (req, res) {
+    models.match.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (match) {
+      match ?
+        res.send(JSON.stringify(match)) :
+        res.send('{}')
+    })
+  });
+  app.get('/api/matches/:id/games', function (req, res) {
+    models.game.findAll({
+      where: {
+        matchId: req.params.id
+      }
+    }).then(function (games) {
+      games ?
+        res.send(JSON.stringify(games)) :
+        res.send('{}')
+    })
+  });
+  app.get('/api/games/:id', function (req, res) {
+    models.game.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (game) {
+      game ?
+        res.send(JSON.stringify(game)) :
+        res.send('{}')
+    })
+  });
+  app.get('/api/games/:id/rounds', function (req, res) {
+    models.round.findAll({
+      where: {
+        gameId: req.params.id
+      }
+    }).then(function (rounds) {
+      rounds ?
+        res.send(JSON.stringify(rounds)) :
         res.send('{}')
     })
   });
@@ -68,53 +128,6 @@ module.exports = function (app, models) {
       where: {
         tournamentId: req.params.id
       }
-    }).then(function (matches) {
-      matches ?
-        res.send(JSON.stringify(matches)) :
-        res.send('{}');
-    })
-  });
-  app.get('/api/tournaments/:id/:matches/games', function (req, res) {
-    models.game.findAll({
-      include: [{
-        model: models.match,
-        required: true,
-        where: {
-          id: req.params.match
-        },
-        include: [{
-          model: models.tournament,
-          required: true,
-          where: {
-            id: req.params.id
-          }
-        }]
-      }]
-    }).then(function (matches) {
-      matches ?
-        res.send(JSON.stringify(matches)) :
-        res.send('{}');
-    })
-  });
-  app.get('/api/tournaments/:id/:matches/:game', function (req, res) {
-    models.round.findAll({
-      include: [{
-        model: models.game,
-        required: true,
-        where: {
-          id: req.params.game
-        },
-        include: [{
-          model: models.match,
-          required: true,
-          where: {
-            id: req.params.match
-          },
-          include: [{
-            model: models.tournament
-          }]
-        }]
-      }]
     }).then(function (matches) {
       matches ?
         res.send(JSON.stringify(matches)) :
