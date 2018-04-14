@@ -11,6 +11,7 @@ import {HttpClient, HttpClientModule, HttpParams} from '@angular/common/http';
 export class TeamShowComponent implements OnInit {
   id: string;
   private team: Object;
+  private players: Object;
 
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) {
   }
@@ -19,6 +20,9 @@ export class TeamShowComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.http.get('http://localhost:5000/api/teams/' + this.id).subscribe(data => {
       this.team = data;
+    });
+    this.http.get('http://localhost:5000/api/teams/' + this.id + '/players').subscribe(data => {
+      this.players = data;
     });
   }
 

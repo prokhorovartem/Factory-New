@@ -16,4 +16,16 @@
   <p>Выигрыш: {{team.amountOfPrizes}}</p>
   <br>
   <p>Дата дебюта: {{team.yearOfEstablishment}}</p>
+  <br>
+  <b>Список игроков:</b>
+  <br>
+  <ul>
+    <li *ngFor="let player of players">
+      <a
+        [routerLink]="['/players', player.id]"
+      >
+        {{player.name}}
+      </a>
+    </li>
+  </ul>
 </div>
