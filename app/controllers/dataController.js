@@ -134,4 +134,15 @@ module.exports = function (app, models) {
         res.send('{}');
     })
   });
+  app.get('/api/weapons/:id', function (req, res) {
+    models.weapon.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (tournaments) {
+      tournaments ?
+        res.send(JSON.stringify(tournaments)) :
+        res.send('{}');
+    })
+  });
 };
