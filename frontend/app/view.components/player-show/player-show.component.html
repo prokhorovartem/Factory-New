@@ -13,7 +13,9 @@
   <br>
   <b>Начало карьеры: </b><p>{{player.startOfCareer}}</p>
   <br>
-  <b>ID команды: </b><p>teamId</p>
+  <b>ID команды: </b><p>{{player.teamId}}</p>
+  <br>
+  <b>Название команды:</b><a [routerLink]="['/teams', id]"> {{teamName}}</a>
   <br>
   <b>WeaponId</b><p> //Не совсем понял что это</p>
   <br>

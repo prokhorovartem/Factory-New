@@ -22,7 +22,7 @@
   <ul>
     <li *ngFor="let player of players">
       <a
-        [routerLink]="['/player', player.id]"
+        [routerLink]="['/player', player.id, team.name]"
       >
         {{player.name}}
       </a>
