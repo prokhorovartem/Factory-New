@@ -16,6 +16,7 @@ import {TeamShowComponent} from './view.components/team-show/team-show.component
 import { TournamentShowComponent } from './view.components/tournament-show/tournament-show.component';
 import { MapsComponent } from './view.components/maps/maps.component';
 import { MapShowComponent } from './view.components/map-show/map-show.component';
+import { PlayerShowComponent } from './view.components/player-show/player-show.component';
 
 
 const appRoutes: Routes = [
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'teams/:id', component: TeamShowComponent},
   { path: 'tournaments/:id', component: TournamentShowComponent},
   { path: 'showmap/:map', component: MapShowComponent},
+  { path: 'player/:id', component: PlayerShowComponent}
   // { path: '**', component: NotFoundComponent}
 ];
 
@@ -48,6 +50,7 @@ const appRoutes: Routes = [
     TournamentShowComponent,
     MapsComponent,
     MapShowComponent,
+    PlayerShowComponent,
   ],
   imports: [
     BrowserModule,
