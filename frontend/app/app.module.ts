@@ -19,6 +19,7 @@ import { MapShowComponent } from './view.components/map-show/map-show.component'
 import { PlayerShowComponent } from './view.components/player-show/player-show.component';
 import { WeaponPageComponent } from './view.components/encyclopedia/weapon-page/weapon-page.component';
 import { MatchShowComponent} from './view.components/match-show/match-show.component';
+import { GameShowComponent } from './view.components/game-show/game-show.component';
 
 
 const appRoutes: Routes = [
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
   { path: 'showmap/:map', component: MapShowComponent},
   { path: 'player/:id', component: PlayerShowComponent},
   { path: 'weapon/:id', component: WeaponPageComponent},
-  { path: 'match/:id', component: MatchShowComponent}
+  { path: 'match/:id', component: MatchShowComponent},
+  { path: 'game/:id', component: GameShowComponent}
   // { path: '**', component: NotFoundComponent}
 ];
 
@@ -56,7 +58,8 @@ const appRoutes: Routes = [
     MapShowComponent,
     PlayerShowComponent,
     WeaponPageComponent,
-    MatchShowComponent
+    MatchShowComponent,
+    GameShowComponent
   ],
   imports: [
     BrowserModule,
