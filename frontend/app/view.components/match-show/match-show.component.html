@@ -13,12 +13,9 @@
   <br>
   <b>Список игр:</b>
   <br>
-    <a *ngFor="let game of games">
-      <a
-        [routerLink]="['/game', game.id]"
-      > Игра №
-        {{game.id}}
-      </a>
-      <br>
-    </a>
+  <span *ngFor="let game of games">
+      <button [routerLink]="['/game', game.id]">{{game.id}}</button>
+    </span>
+  <router-outlet></router-outlet>
 </div>
+

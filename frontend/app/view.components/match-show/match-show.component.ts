@@ -9,7 +9,6 @@ import {HttpClient, HttpClientModule, HttpParams} from '@angular/common/http';
 })
 export class MatchShowComponent implements OnInit {
   id: string;
-  //tournamentName: string;
   private match: Object;
   private games: Object;
 
@@ -17,7 +16,6 @@ export class MatchShowComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
-    //this.tournamentName = this.activatedRoute.snapshot.params['tournamentName'];
     this.http.get('http://localhost:5000/api/matches/' + this.id).subscribe(data => {
       this.match = data;
     });
