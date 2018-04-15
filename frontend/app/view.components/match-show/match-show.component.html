@@ -1,28 +1,22 @@
 <div class="showmatch">
-  <h2>Матч № {{match.id}}</h2>
+  <h2>Информация о матче</h2>
   <br>
-  <b>ID первой команды: </b><a [routerLink]="['/teams', match.team1Id]">{{match.team1Id}}</a>
+  <h3><a [routerLink]="['/teams', match.team1Id]">{{match.first_team.name}}</a> {{match.points1}}:{{match.points2}} <a [routerLink]="['/teams', match.team2Id]">{{match.second_team.name}}</a></h3>
   <br>
-  <b>ID второй команды: </b><a [routerLink]="['/teams', match.team2Id]">{{match.team2Id}}</a>
-  <br>
-  <b>Очки первой команды: </b><a>{{match.points1}}</a>
-  <br>
-  <b>Очки второй команды: </b><a>{{match.points2}}</a>
-  <br>
-  <b>ID победителя: </b><a [routerLink]="['/teams', match.winnerId]">{{match.winnerId}}</a>
+  <b>Победитель: </b><a [routerLink]="['/teams', match.winnerId]">{{match.win_team.name}}</a>
   <br>
   <b>Начало матча: </b><a>{{match.matchBegin}}</a>
   <br>
   <b>Конец матча: </b><a>{{match.matchEnd}}</a>
   <br>
-  <b>ID Турнира: </b><a [routerLink]="['/tournaments', match.tournamentId]">{{match.tournamentId}}</a>
+  <b>Турнир: </b><a [routerLink]="['/tournaments', match.tournamentId]">{{match.tournament.name}}</a>
   <br>
   <b>Список игр:</b>
   <br>
     <a *ngFor="let game of games">
       <a
         [routerLink]="['/game', game.id]"
-      > ID игры:
+      > Игра №
         {{game.id}}
       </a>
       <br>

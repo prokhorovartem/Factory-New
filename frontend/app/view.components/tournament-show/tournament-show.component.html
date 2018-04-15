@@ -12,11 +12,9 @@
   <b>Список сыгранных матчей:</b>
   <br>
     <a *ngFor="let match of matches">
-      <a
-        [routerLink]="['/match', match.id]"
-      > ID матча:
-        {{match.id}}
-      </a>
+      <i><a [routerLink]="['/teams', match.team1Id]">{{match.first_team.name}}</a> vs <a [routerLink]="['/teams', match.team2Id]">{{match.second_team.name}}</a></i>
+      <br>
+      <i><a [routerLink]="['/match', match.id]">Счёт</a> {{match.points1}}:{{match.points2}}</i>
       <br>
     </a>
 </div>
