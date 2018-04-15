@@ -15,10 +15,6 @@ module.exports = function (app, passport) {
     }
   ));
 
-  app.get('/', function (req, resp) {
-    resp.redirect('/signin');
-  });
-
   app.post('/signin', passport.authenticate('local-signin', {
       badRequestMessage: 'Заполните ВСЕ поля.',
       successRedirect: '/main',
@@ -48,6 +44,6 @@ module.exports = function (app, passport) {
   function isNotLoggedIn(req, resp, next) {
     if (!req.isAuthenticated())
       return next();
-    resp.redirect('/main');
+    resp.redirect('/');
   }
 }

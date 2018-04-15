@@ -1,20 +1,16 @@
 module.exports = {
   signup: function (req, res) {
-    res.render('signup', {
-      message: req.flash('error')
-    });
+    res.redirect('/signup');
   },
   main: function (req, resp) {
-    resp.render('main');
+    resp.redirect('/');
   },
   signin: function (req, resp) {
-    resp.render('signin', {
-      message: req.flash('error')
-    });
+    resp.redirect('signin');
   },
   logout: function (req, resp) {
     req.session.destroy(function (err) {
-      resp.redirect('/signin');
+      resp.redirect('/');
     });
   }
 };

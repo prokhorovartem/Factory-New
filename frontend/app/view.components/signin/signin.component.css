@@ -71,7 +71,6 @@ body {
   -moz-border-radius: 3px 3px 0px 0px;
   -webkit-border-radius: 3px 3px 0px 0px;
   padding: 12px 10px;
-  width: 238px;
   -webkit-appearance:none;
 }
 
@@ -82,7 +81,6 @@ body {
   -moz-border-radius: 0px 0px 3px 3px;
   -webkit-border-radius: 0px 0px 3px 3px;
   padding: 12px 10px;
-  width: 238px;
   -webkit-appearance:none;
 }
 

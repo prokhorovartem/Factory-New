@@ -10,6 +10,7 @@
         </div>
         <div>
           <button [routerLink]="['/signin']" class="btn btn-primary" style="margin-left: auto; margin-right: auto">Войти</button>
+          <button [routerLink]="['/signup']" class="btn btn-primary" style="margin-left: auto; margin-right: auto">Зарегистрироваться</button>
         </div>
       </div>
     </div>
@@ -49,11 +50,11 @@
                       <label for="sub_m4.1.1" class="toggleSubmenu"><i class="fa"></i></label>
                       <ul>
                         <li><a [routerLink]="['/weapon', '1']">USP Tactical</a></li>
-                        <li><a href="#">Glock18</a></li>
-                        <li><a href="#">Desert Eagle</a></li>
-                        <li><a href="#">P228</a></li>
-                        <li><a href="#">Dual Beretta</a></li>
-                        <li><a href="#">Five-Seven</a></li>
+                        <li><a [routerLink]="['/weapon', '2']">Glock18</a></li>
+                        <li><a [routerLink]="['/weapon', '3']">Desert Eagle</a></li>
+                        <li><a [routerLink]="['/weapon', '4']">P228</a></li>
+                        <li><a [routerLink]="['/weapon', '5']">Dual Beretta</a></li>
+                        <li><a [routerLink]="['/weapon', '6']">Five-Seven</a></li>
                       </ul>
                     </li>
                     <li>
