@@ -1,4 +1,4 @@
-module.exports = function (app, models, urlencodedParser) {
+module.exports = function (app, models) {
   function isLoggedIn(req, resp, next) {
     if (req.isAuthenticated())
       return next();
@@ -44,6 +44,22 @@ module.exports = function (app, models, urlencodedParser) {
           }
         ]
       },
+      include: [
+        {
+          model: models.team,
+          as: 'first_team',
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        },
+        {
+          model: models.team,
+          as: 'second_team',
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        }
+      ],
       order: [['matchBegin', 'DESC']],
       limit: 5
     }).then(function (matches) {
@@ -246,10 +262,10 @@ module.exports = function (app, models, urlencodedParser) {
         res.send('{}');
     })
   });
-  app.post('/api/news', function (req, res) {
+  app.post('/api/news', isLoggedIn, function (req, res) {
     models.news.create({
-      title: req.headers.title,
-      text: req.headers.text,
+      title: req.body.title,
+      text: req.body.text,
       userId: 1
     }).then(function (news) {
       res.json(news);
@@ -257,9 +273,9 @@ module.exports = function (app, models, urlencodedParser) {
   });
   app.post('/api/news/:id', function (req, res) {
     models.comment.create({
-      text: req.headers.text,
+      text: req.body.text,
       userId: 1,
-      newsId: req.params.id
+      newsId: req.body.id
     }).then(function (news) {
       res.json(news);
     })
