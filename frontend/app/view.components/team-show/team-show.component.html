@@ -17,13 +17,12 @@
   <br>
   <b>Список игроков:</b>
   <br>
-  <ul>
-    <li *ngFor="let player of players">
+    <a *ngFor="let player of players">
       <a
         [routerLink]="['/player', player.id]"
       >
         {{player.nickname}}
       </a>
-    </li>
-  </ul>
+      <br>
+    </a>
 </div>

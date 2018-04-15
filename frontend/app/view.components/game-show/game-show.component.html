@@ -12,4 +12,16 @@
   <b>{{game.match_id}}</b><a>//Я не понял, что это</a>
   <br>
   <b>{{game.mvp_id}}</b><a>//Тоже не понял</a>
+  <br>
+  <br>
+  <b>Список раундов:</b>
+  <br>
+    <a *ngFor="let round of rounds">
+      <b>Номер раунда: </b><a>{{round.id}}</a>
+      <br>
+      <i>Номер игры: </i><a [routerLink]="['/game', round.game_id]"><i>{{round.game_id}}</i></a>
+      <br>
+      <i>ID победителя: </i><a [routerLink]="['/team',round.winnerId]"><i>{{round.winnerId}}</i></a>
+      <br>
+    </a>
 </div>

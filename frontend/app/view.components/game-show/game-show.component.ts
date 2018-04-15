@@ -10,6 +10,7 @@ import {HttpClient, HttpClientModule, HttpParams} from '@angular/common/http';
 export class GameShowComponent implements OnInit {
   id: string;
   private game: Object;
+  private rounds: Object;
 
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
 
@@ -17,6 +18,9 @@ export class GameShowComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.http.get('http://localhost:5000/api/games/' + this.id).subscribe(data => {
       this.game = data;
+    });
+    this.http.get('http://localhost:5000/api/games/' + this.id + '/rounds').subscribe(data => {
+      this.rounds = data;
     });
   }
 

@@ -37,7 +37,7 @@ const appRoutes: Routes = [
   { path: 'player/:id', component: PlayerShowComponent},
   { path: 'weapon/:id', component: WeaponPageComponent},
   { path: 'match/:id', component: MatchShowComponent},
-  { path: 'game/:id', component: GameShowComponent}
+  { path: 'game/:id', component: GameShowComponent},
   // { path: '**', component: NotFoundComponent}
 ];
 

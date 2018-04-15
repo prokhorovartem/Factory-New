@@ -19,13 +19,12 @@
   <br>
   <b>Список игр:</b>
   <br>
-  <ul>
-    <li *ngFor="let game of games">
+    <a *ngFor="let game of games">
       <a
         [routerLink]="['/game', game.id]"
       > ID игры:
         {{game.id}}
       </a>
-    </li>
-  </ul>
+      <br>
+    </a>
 </div>

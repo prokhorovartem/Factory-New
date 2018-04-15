@@ -9,16 +9,14 @@
   <br>
   <b>Призовой фонд: </b><a>{{tournament.winnersPrize}} руб.</a>
   <br>
-  <a>Список сыгранных матчей:</a>
+  <b>Список сыгранных матчей:</b>
   <br>
-  <p>SimpleSas{{winId}}</p>
-  <ul>
-    <li *ngFor="let match of matches">
+    <a *ngFor="let match of matches">
       <a
         [routerLink]="['/match', match.id]"
       > ID матча:
         {{match.id}}
       </a>
-    </li>
-  </ul>
+      <br>
+    </a>
 </div>
