@@ -20,8 +20,8 @@ module.exports = function (sequelize, Sequelize) {
       field: 'news_id'
     },
     date: {
-      type: Sequelize.DATEONLY,
-      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW,
       field: 'date'
     }
   }, {

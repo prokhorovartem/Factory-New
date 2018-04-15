@@ -81,10 +81,33 @@ module.exports = function (app, models) {
     models.match.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include:[
+        {
+          model: models.team,
+          as: 'first_team',
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        },
+        {
+          model: models.team,
+          as: 'second_team',
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        },
+        {
+          model: models.team,
+          as: 'win_team',
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        }
+      ]
     }).then(function (match) {
       match ?
-        res.send(JSON.stringify(match)) :
+        res.send(JSON.stringify(match, "", 4)) :
         res.send('{}')
     })
   });
@@ -144,7 +167,7 @@ module.exports = function (app, models) {
       }
     }).then(function (matches) {
       matches ?
-        res.send(JSON.stringify(matches)) :
+        res.send(JSON.stringify(matches, "", 4)) :
         res.send('{}');
     })
   });
@@ -156,6 +179,44 @@ module.exports = function (app, models) {
     }).then(function (tournaments) {
       tournaments ?
         res.send(JSON.stringify(tournaments)) :
+        res.send('{}');
+    })
+  });
+  app.get('/api/news', function (req, res) {
+    models.news.findAll().then(function (teams) {
+      res.send(JSON.stringify(teams))
+    })
+  });
+  app.get('/api/news/:id', function (req, res) {
+    models.news.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (team) {
+      team ?
+        res.send(JSON.stringify(team)) :
+        res.send('{}');
+    })
+  });
+  app.get('/api/news/:id/comments', function (req, res) {
+    models.comment.findAll({
+      where: {
+        newsId: req.params.id
+      }
+    }).then(function (team) {
+      team ?
+        res.send(JSON.stringify(team)) :
+        res.send('{}');
+    })
+  });
+  app.post('/api/news', function (req, res) {
+    models.news.create({
+      title: req.body.title,
+      text: req.body.text,
+      userId: req.body.userId
+    }).then(function (team) {
+      team ?
+        res.send(JSON.stringify(team)) :
         res.send('{}');
     })
   });
