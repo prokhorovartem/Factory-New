@@ -164,7 +164,30 @@ module.exports = function (app, models) {
     models.match.findAll({
       where: {
         tournamentId: req.params.id
-      }
+      },
+      include: [
+        {
+          model: models.team,
+          as: 'first_team',
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        },
+        {
+          model: models.team,
+          as: 'second_team',
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        },
+        {
+          model: models.team,
+          as: 'win_team',
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        }
+      ]
     }).then(function (matches) {
       matches ?
         res.send(JSON.stringify(matches, "", 4)) :
