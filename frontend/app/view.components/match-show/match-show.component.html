@@ -1,4 +1,5 @@
 <div class="showmatch">
+  <div>
   <h2>Информация о матче</h2>
   <br>
   <h3><a [routerLink]="['/teams', match.team1Id]">{{match.first_team.name}}</a> {{match.points1}}:{{match.points2}} <a [routerLink]="['/teams', match.team2Id]">{{match.second_team.name}}</a></h3>
@@ -14,8 +15,11 @@
   <b>Список игр:</b>
   <br>
   <span *ngFor="let game of games">
-      <button [routerLink]="['/game', game.id]">{{game.id}}</button>
+      <button [routerLink]="['/match', match.id, game.id]">{{game.id}}</button>
     </span>
-  <router-outlet></router-outlet>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
