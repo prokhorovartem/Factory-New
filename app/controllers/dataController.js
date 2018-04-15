@@ -159,7 +159,15 @@ module.exports = function (app, models) {
     models.tournament.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include: [
+        {
+          model: models.team,
+          attributes: {
+            exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
+          }
+        }
+      ]
     }).then(function (tournaments) {
       tournaments ?
         res.send(JSON.stringify(tournaments)) :
