@@ -11,10 +11,11 @@
   <br>
   <a>Список сыгранных матчей:</a>
   <br>
+  <p>SimpleSas{{winId}}</p>
   <ul>
     <li *ngFor="let match of matches">
       <a
-        [routerLink]="['/match', match.id, tournament.name]"
+        [routerLink]="['/match', match.id]"
       > ID матча:
         {{match.id}}
       </a>

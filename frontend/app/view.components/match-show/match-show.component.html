@@ -1,0 +1,31 @@
+<div class="showmatch">
+  <h2>Матч № {{match.id}}</h2>
+  <br>
+  <b>ID первой команды: </b><a [routerLink]="['/teams', match.team1Id]">{{match.team1Id}}</a>
+  <br>
+  <b>ID второй команды: </b><a [routerLink]="['/teams', match.team2Id]">{{match.team2Id}}</a>
+  <br>
+  <b>Очки первой команды: </b><a>{{match.points1}}</a>
+  <br>
+  <b>Очки второй команды: </b><a>{{match.points2}}</a>
+  <br>
+  <b>ID победителя: </b><a [routerLink]="['/teams', match.winnerId]">{{match.winnerId}}</a>
+  <br>
+  <b>Начало матча: </b><a>{{match.matchBegin}}</a>
+  <br>
+  <b>Конец матча: </b><a>{{match.matchEnd}}</a>
+  <br>
+  <b>ID Турнира: </b><a [routerLink]="['/tournaments', match.tournamentId]">{{match.tournamentId}}</a>
+  <br>
+  <b>Список игр:</b>
+  <br>
+  <ul>
+    <li *ngFor="let game of games">
+      <a
+        [routerLink]="['/game', game.id]"
+      > ID игры:
+        {{game.id}}
+      </a>
+    </li>
+  </ul>
+</div>
