@@ -19,6 +19,7 @@ db.tournament = require('../models/tournament.js')(sequelize, Sequelize);
 db.user = require('../models/user.js')(sequelize, Sequelize);
 db.weapon = require('../models/weapon.js')(sequelize, Sequelize);
 db.news = require('../models/news.js')(sequelize, Sequelize);
+db.comment = require('../models/comment.js')(sequelize, Sequelize);
 
 //Relations
 db.player.belongsTo(db.team);
@@ -53,5 +54,9 @@ db.frag.belongsTo(db.weapon, {foreignKey: 'weapon_id'});
 db.weapon.hasMany(db.frag, {foreignKey: 'weapon_id'});
 db.news.belongsTo(db.user, {foreignKey: 'user_id'});
 db.user.hasMany(db.news, {foreignKey: 'user_id'});
+db.comment.belongsTo(db.user, {foreignKey: 'user_id'});
+db.user.hasMany(db.comment, {foreignKey: 'user_id'});
+db.comment.belongsTo(db.news, {foreignKey: 'news_id'});
+db.news.hasMany(db.comment, {foreignKey: 'news_id'});
 
 module.exports = db;
