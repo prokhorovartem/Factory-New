@@ -1,4 +1,4 @@
-module.exports = function (app, models) {
+module.exports = function (app, models, urlencodedParser) {
   function isLoggedIn(req, resp, next) {
     if (req.isAuthenticated())
       return next();
@@ -82,7 +82,7 @@ module.exports = function (app, models) {
       where: {
         id: req.params.id
       },
-      include:[
+      include: [
         {
           model: models.team,
           as: 'first_team',
@@ -248,13 +248,20 @@ module.exports = function (app, models) {
   });
   app.post('/api/news', function (req, res) {
     models.news.create({
-      title: req.body.title,
-      text: req.body.text,
-      userId: req.body.userId
-    }).then(function (team) {
-      team ?
-        res.send(JSON.stringify(team)) :
-        res.send('{}');
+      title: req.headers.title,
+      text: req.headers.text,
+      userId: 1
+    }).then(function (news) {
+      res.json(news);
+    })
+  });
+  app.post('/api/news/:id', function (req, res) {
+    models.comment.create({
+      text: req.headers.text,
+      userId: 1,
+      newsId: req.params.id
+    }).then(function (news) {
+      res.json(news);
     })
   });
 };
