@@ -103,6 +103,12 @@ module.exports = function (app, models) {
           attributes: {
             exclude: ['id', 'country', 'history', 'favouriteMap', 'amountOfPrizes', 'yearOfEstablishment']
           }
+        },
+        {
+          model: models.tournament,
+          attributes: {
+            exclude: ['id', 'startDate', 'winnerId', 'winnersPrize']
+          }
         }
       ]
     }).then(function (match) {
