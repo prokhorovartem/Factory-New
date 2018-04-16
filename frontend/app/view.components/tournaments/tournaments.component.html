@@ -3,15 +3,14 @@
 <hr>
 <br>
 <div class="tournaments">
-<ul>
-  <li *ngFor="let tournament of tournaments">
+  <span *ngFor="let tournament of tournaments">
     <a
       [routerLink]="['/tournaments', tournament.id]"
     >
       {{tournament.name}}
     </a>
+    <i>Призовой фонд: {{tournament.winnersPrize}} $</i>
     <br>
-  </li>
+  </span>
   <router-outlet></router-outlet>
-</ul>
 </div>

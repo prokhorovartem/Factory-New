@@ -15,9 +15,9 @@ export class GameShowComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params['idGame'];
+    this.id = this.activatedRoute.snapshot.params['id'];
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.id = params['idGame'];
+      this.id = params['id'];
     });
     this.http.get('http://localhost:5000/api/games/' + this.id).subscribe(data => {
       this.game = data;

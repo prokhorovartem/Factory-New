@@ -15,11 +15,8 @@
   <b>Список игр:</b>
   <br>
   <span *ngFor="let game of games">
-      <button [routerLink]="['/match', match.id, game.id]">{{game.id}}</button>
+      <button [routerLink]="['/game', game.id]">{{game.id}}</button>
     </span>
-  </div>
-  <div class="game">
-    <router-outlet></router-outlet>
   </div>
 </div>
 

@@ -3,14 +3,17 @@
 
 <hr>
 <br>
-<ul>
-  <li *ngFor="let team of teams">
+<div class="teamshow">
+  <b>Команда - выигрыш</b>
+  <br>
+  <a *ngFor="let team of teams">
     <a
       [routerLink]="['/teams', team.id]"
     >
       {{team.name}}
     </a>
+    <i>- {{team.amountOfPrizes}} $</i>
     <br>
-  </li>
+  </a>
   <router-outlet></router-outlet>
-</ul>
+</div>
