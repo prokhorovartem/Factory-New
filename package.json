@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng build && node server.js",
     "build": "ng build --prod",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -30,6 +30,7 @@
     "core-js": "^2.4.1",
     "dotenv": "^5.0.0",
     "ejs": "^2.5.7",
+    "emailjs": "^2.0.0",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",

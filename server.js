@@ -7,8 +7,22 @@ var env = require('dotenv').load();
 var path = require('path');
 const expressHandlebars = require('express-handlebars');
 const flash = require('connect-flash');
-
+var email 	= require('emailjs');
 require('./app/telegram');
+
+// var server 	= email.server.connect({
+//   user:    "factoryNewTestMail@gmail.com",
+//   password: "factoryNewSiteTheBest",
+//   host:    "smtp.gmail.com",
+//   ssl:     true
+// });
+//
+// server.send({
+//   text:    "new test text",
+//   from:    "test <factoryNewTestMail@gmail.com>",
+//   to:      'artyom <art.98.pro@gmail.com>',
+//   subject: "testing emailjs1"
+// }, function(err, message) { console.log(err || message); });
 
 //For BodyParser
 app.use(bodyParser.urlencoded({extended: false}));

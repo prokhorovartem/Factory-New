@@ -7,7 +7,7 @@ module.exports = function (app, models) {
 
   app.get('/api/teams', function (req, res) {
     models.team.findAll().then(function (teams) {
-      res.send(JSON.stringify(teams))
+      res.send(JSON.stringify(teams, "", 4))
     })
   });
   app.get('/api/teams/:id', function (req, res) {
@@ -17,7 +17,7 @@ module.exports = function (app, models) {
       }
     }).then(function (team) {
       team ?
-        res.send(JSON.stringify(team)) :
+        res.send(JSON.stringify(team, "", 4)) :
         res.send('{}');
     })
   });
@@ -28,7 +28,7 @@ module.exports = function (app, models) {
       }
     }).then(function (players) {
       players ?
-        res.send(JSON.stringify(players)) :
+        res.send(JSON.stringify(players, "", 4)) :
         res.send('{}')
     })
   });
