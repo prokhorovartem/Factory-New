@@ -18,7 +18,7 @@
   <b>Последние матчи команды:</b>
   <br>
   <a *ngFor="let match of matches">
-    <span>{{match.first_team.name}} vs {{match.second_team.name}}</span>
+    <span><a [routerLink]="['teams', match.team1Id]">{{match.first_team.name}}</a> vs <a [routerLink]="['/teams', match.team2Id]">{{match.second_team.name}}</a></span>
     <br>
     <span><a [routerLink]="['/match', match.id]">Счёт: </a>{{match.points1}}:{{match.points2}}</span>
     <br>

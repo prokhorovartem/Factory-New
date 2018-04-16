@@ -1,4 +1,13 @@
-<h1 align="center"><b><i>Главная страница</i></b></h1>
-<br>
-<p align="center"><i>Приветствую вас на сайте Factory-New!</i></p>
-<p align="center">В этом разделе будут появляться новости, касающиеся нашего сайта, и турниров</p>
+<div class="news">
+<h1>Приветствую вас на Factory-New!</h1>
+  <h2>Новости</h2>
+  <br>
+</div>
+  <span *ngFor="let new of news" class="new">
+    <b>Тема: </b><a [routerLink]="['/news', new.id]">{{new.title}}</a><b> Автор: </b><i>{{new.userId}}</i>
+    <br>
+    <b>Размещено: </b><i>{{new.date}}</i>
+    <br>
+    <hr>
+  </span>
+

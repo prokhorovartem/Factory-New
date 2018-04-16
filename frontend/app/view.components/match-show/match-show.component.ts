@@ -15,7 +15,10 @@ export class MatchShowComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params['id'];
+    //this.id = this.activatedRoute.snapshot.params['id'];
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.id = params['id'];
+    });
     this.http.get('http://localhost:5000/api/matches/' + this.id).subscribe(data => {
       this.match = data;
     });

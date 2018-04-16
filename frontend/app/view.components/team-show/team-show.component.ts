@@ -19,6 +19,9 @@ export class TeamShowComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.id = params['id'];
+    });
     this.http.get('http://localhost:5000/api/teams/' + this.id).subscribe(data => {
       this.team = data;
     });
